@@ -49,7 +49,7 @@ def generate_zip():
                     zipf.write(local_path, arcname=os.path.basename(key))
 
             # Upload back to S3
-            s3.upload_file(zip_path, S3_BUCKET, zip_key, ExtraArgs={'ACL': 'public-read'})
+            s3.upload_file(zip_path, bucket, s3_key)
 
         zip_url = f"https://{S3_BUCKET}.s3.{REGION}.amazonaws.com/{zip_key}"
         return jsonify({'url': zip_url})
